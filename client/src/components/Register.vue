@@ -1,33 +1,32 @@
 <template>
   <v-layout column>
     <v-flex xs6>
-      <div class="white elevation-2">
-        <v-toolbar text dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <input type="email"
-              name="email"
-              placeholder="email"
-              v-model="email">
+      <app-panel title="Register">
+        <form name="music-tracker-form">
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            v-model="email">
           <br>
-          <input type="password"
-              name="password"
-              placeholder="password"
-              v-model="password">
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            v-model="password">
           <br>
           <div v-html="error" class="error"></div>
           <br>
           <v-btn class="cyan" @click="register">Register</v-btn>
-        </div>
-      </div>
+        </form>
+      </app-panel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -49,6 +48,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    appPanel: Panel
   }
 }
 </script>
@@ -69,9 +71,6 @@ export default {
     border-radius: 5px;
     overflow: hidden;
     padding-bottom: 20px;
-  }
-  .white.elevation-2 > div {
-    padding-top: 20px;
   }
   input {
     background: #f5f5f5;

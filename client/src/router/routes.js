@@ -2,6 +2,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Songs from '@/components/Songs'
+import CreateSong from '@/components/CreateSong'
 
 export const routes = [
   {
@@ -23,5 +24,10 @@ export const routes = [
     path: '/songs',
     name: 'songs',
     component: Songs
+  },
+  {
+    path: '/songs/create',
+    name: 'create-song',
+    component: CreateSong
   }
 ]

@@ -14,7 +14,7 @@
       <v-btn
         text
         dark
-        to="songs"
+        to="/songs"
       >
         Browse
       </v-btn>
@@ -26,7 +26,7 @@
       <v-btn
         text
         dark
-        to="login"
+        to="/login"
         v-if="!$store.state.isUserLoggedIn"
       >
         Login
@@ -35,7 +35,7 @@
       <v-btn
         text
         dark
-        to="register"
+        to="/register"
         v-if="!$store.state.isUserLoggedIn"
       >
         Sign Up

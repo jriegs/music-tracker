@@ -2,10 +2,48 @@
   <v-layout column>
     <v-flex xs6>
       <app-panel title="Songs">
-        <div v-for="song in songs" :key="song.title">
-          {{ song.title }}
-          {{ song.artist }}
-          {{ song.album }}
+        <v-btn
+          slot="action"
+          class="cyan accent-2"
+          light
+          medium
+          absolute
+          right
+          middle
+          fab
+          to="/songs/create"
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
+        <div class="song" v-for="song in songs" :key="song.id">
+
+          <v-layout>
+            <v-flex xs6>
+              <div class="song-info title">
+                {{ song.title }}
+              </div>
+              <div class="song-info artist">
+                {{ song.artist }}
+              </div>
+              <div class="song-info genre">
+                {{ song.genre }}
+              </div>
+              <v-btn
+                dark
+                class="view-btn"
+              >
+                View
+              </v-btn>
+            </v-flex>
+
+            <v-flex xs6>
+              <img
+                :src="song.albumImageUrl"
+                :alt="song.album"
+                class="album-image"
+                style="width: 100%">
+            </v-flex>
+          </v-layout>
         </div>
       </app-panel>
     </v-flex>
@@ -23,7 +61,7 @@ export default {
   },
   async mounted () {
     // do a request to the backend for all the songs
-    this.songs = await SongsService.index()
+    this.songs = (await SongsService.index()).data
   },
   components: {
     appPanel: Panel
@@ -48,20 +86,26 @@ export default {
     overflow: hidden;
     padding-bottom: 20px;
   }
-  .white.elevation-2 > div {
-    padding-top: 20px;
+  .song .xs6 {
+      padding: 20px;
   }
-  input {
-    background: #f5f5f5;
-    height: 40px;
-    width: 100%;
-    max-width: 400px;
-    margin: 10px 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+  .song .xs6:first-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
   }
-  .error {
-    color: red;
+  .song-info {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .song-info.title {
+    font-size: 32px;
+  }
+  .song-info.artist {
+    font-size: 24px;
+  }
+  .view-btn {
+      width: 50%;
+      margin: 20px auto 0;
   }
 </style>

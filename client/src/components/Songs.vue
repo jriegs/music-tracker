@@ -31,7 +31,12 @@
               <v-btn
                 dark
                 class="view-btn"
-              >
+                :to="{
+                  name: 'song',
+                  params: {
+                    songId: song.id
+                  }
+                }">
                 View
               </v-btn>
             </v-flex>

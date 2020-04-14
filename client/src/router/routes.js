@@ -3,6 +3,8 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Songs from '@/components/Songs'
 import CreateSong from '@/components/CreateSong'
+import ViewSong from '@/components/ViewSong/Index'
+import EditSong from '@/components/EditSong'
 
 export const routes = [
   {
@@ -29,5 +31,15 @@ export const routes = [
     path: '/songs/create',
     name: 'create-song',
     component: CreateSong
+  },
+  {
+    path: '/songs/:songId',
+    name: 'song',
+    component: ViewSong
+  },
+  {
+    path: '/songs/:songId/edit',
+    name: 'edit-song',
+    component: EditSong
   }
 ]

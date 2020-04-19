@@ -1,17 +1,11 @@
-import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import Songs from '@/components/Songs'
+import Songs from '@/components/Songs/Index'
 import CreateSong from '@/components/CreateSong'
 import ViewSong from '@/components/ViewSong/Index'
 import EditSong from '@/components/EditSong'
 
 export const routes = [
-  {
-    path: '/',
-    name: 'HelloWorld',
-    component: HelloWorld
-  },
   {
     path: '/register',
     name: 'register',
@@ -41,5 +35,9 @@ export const routes = [
     path: '/songs/:songId/edit',
     name: 'edit-song',
     component: EditSong
+  },
+  {
+    path: '*',
+    redirect: '/songs'
   }
 ]

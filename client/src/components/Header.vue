@@ -2,7 +2,7 @@
   <v-app-bar text dense class="cyan mb-4" dark fixed>
     <v-toolbar-title>
       <router-link
-        to="/"
+        to="/songs"
         tag="span"
         style="cursor: pointer">
           Music Tracker
@@ -60,7 +60,7 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({
-        name: 'root'
+        name: 'songs'
       })
     }
   }

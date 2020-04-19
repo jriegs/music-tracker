@@ -23,6 +23,22 @@
           }">
           Edit
         </v-btn>
+
+        <v-btn
+          v-if="isUserLoggedIn && !bookmark"
+          dark
+          class="cyan"
+          @click="setBookmark">
+          Bookmark
+        </v-btn>
+
+        <v-btn
+          v-if="isUserLoggedIn && bookmark"
+          dark
+          class="cyan"
+          @click="removeBookmark">
+          Remove Bookmark
+        </v-btn>
       </v-flex>
 
       <v-flex>
@@ -39,14 +55,60 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import { mapState } from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
 
 export default {
   props: [
     'song'
   ],
-  components: {
-    appPanel: Panel
+  data () {
+    return {
+      bookmark: false
+    }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
+  },
+  watch: {
+    async song () {
+      if (!this.isUserLoggedIn) {
+        return
+      }
+
+      try {
+        this.bookmark = (await BookmarksService.index({
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  methods: {
+    async setBookmark () {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+
+      console.log('bookmark')
+    },
+    async removeBookmark () {
+      try {
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = false
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 }
 </script>

@@ -28,7 +28,6 @@ import SongMetadata from './SongMetadata'
 import Youtube from './Youtube'
 import Lyrics from './Lyrics'
 import Tabs from './Tabs'
-import Panel from '@/components/Panel'
 
 export default {
   data () {
@@ -43,7 +42,6 @@ export default {
     console.log(this.song)
   },
   components: {
-    appPanel: Panel,
     appSongMetadata: SongMetadata,
     appYoutube: Youtube,
     appLyrics: Lyrics,

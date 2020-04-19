@@ -7,15 +7,10 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
-
 export default {
   props: [
     'tabs'
-  ],
-  components: {
-    appPanel: Panel
-  }
+  ]
 }
 </script>
 
